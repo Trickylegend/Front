@@ -34,6 +34,7 @@ export default function LoginForm() {
 
 	return (
 		<div className={styles.formContainer}>
+			<h2>Авторизация</h2>
 			<CustomForm<LoginFormData>
 				schema={loginSchema}
 				onSubmit={onSubmit}
