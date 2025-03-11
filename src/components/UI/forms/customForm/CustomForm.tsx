@@ -12,6 +12,10 @@ type CustomFormProps<T> = {
 	onSubmit: (data: T, methods: ExtendedFormMethods<T>) => Promise<void> | void
 	defaultErrorMessage?: string
 	defaultSuccessMessage?: string
+	buttonPendingMessage?: string
+	buttonDefaultMessage?: string
+	buttonErrorMessage?: string
+	buttonSuccessMessage?: string
 	children: React.ReactNode
 }
 
@@ -20,6 +24,10 @@ export default function CustomForm<T>({
 	initialValues = {} as T,
 	onSubmit,
 	defaultErrorMessage,
+	buttonDefaultMessage = 'Сохранить',
+	buttonPendingMessage = 'Сохранение..',
+	buttonErrorMessage = 'Ошибка',
+	buttonSuccessMessage = 'Успешно',
 	children,
 }: CustomFormProps<T>) {
 	const methods = useForm<T>({
@@ -39,6 +47,7 @@ export default function CustomForm<T>({
 	} = methods
 
 	const handleCustomSubmit = async (data: T) => {
+		methods.setServerSuccess(null)
 		try {
 			await onSubmit(data, methods)
 		} catch (error: any) {
@@ -54,13 +63,16 @@ export default function CustomForm<T>({
 		? styles.successButton
 		: styles.button
 
+	// const isDisabled = isSubmitting || (!errors.root && serverSuccess)
+	const isDisabled = isSubmitting
+
 	const buttonText = isSubmitting
-		? 'Сохранение...'
+		? buttonPendingMessage
 		: errors.root
-		? 'Ошибка'
+		? buttonErrorMessage
 		: serverSuccess
-		? 'Успех'
-		: 'Сохранить'
+		? buttonSuccessMessage
+		: buttonDefaultMessage
 
 	return (
 		<FormProvider {...methods}>
@@ -70,7 +82,7 @@ export default function CustomForm<T>({
 				noValidate
 			>
 				{children}
-				<button disabled={isSubmitting} type='submit' className={buttonClass}>
+				<button disabled={isDisabled} type='submit' className={buttonClass}>
 					{buttonText}
 				</button>
 				{errors.root && (

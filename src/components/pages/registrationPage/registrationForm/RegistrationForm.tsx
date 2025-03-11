@@ -8,7 +8,7 @@ import { z } from 'zod'
 import styles from './RegistrationForm.module.scss'
 
 const registrationSchema = z.object({
-	name: z.string().min(1, 'Введите!'),
+	name: z.string(),
 	email: z.string().email('Почта обязательна'),
 	password: z.string().min(8, 'Минимальное количество символов - 8'),
 })
@@ -39,7 +39,7 @@ export default function RegistrationForm() {
 				onSubmit={onSubmit}
 				defaultErrorMessage={'Ошибка регистрации'}
 			>
-				<CustomInput name='text' type='name' placeholder='Имя' />
+				<CustomInput name='name' type='text' placeholder='Имя' />
 				<CustomInput name='email' type='email' placeholder='Почта' />
 				<CustomInput name='password' type='password' placeholder='Пароль' />
 			</CustomForm>
