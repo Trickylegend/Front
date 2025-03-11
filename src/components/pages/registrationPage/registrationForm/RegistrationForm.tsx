@@ -18,6 +18,8 @@ type RegistrationFormData = z.infer<typeof registrationSchema>
 export default function RegistrationForm() {
 	const mutation = useRegistration()
 
+	const defaultErrorMessage = 'Ошибка регистрации'
+
 	const onSubmit = async (
 		data: RegistrationFormData,
 		methods: ExtendedFormMethods<RegistrationFormData>
@@ -27,7 +29,7 @@ export default function RegistrationForm() {
 			methods.setServerSuccess(result.message)
 		} catch (error: any) {
 			methods.setError('root', {
-				message: error.response?.data?.message,
+				message: error.response?.data?.message || defaultErrorMessage,
 			})
 		}
 	}
@@ -37,7 +39,7 @@ export default function RegistrationForm() {
 			<CustomForm<RegistrationFormData>
 				schema={registrationSchema}
 				onSubmit={onSubmit}
-				defaultErrorMessage={'Ошибка регистрации'}
+				defaultErrorMessage={defaultErrorMessage}
 			>
 				<CustomInput name='name' type='text' placeholder='Имя' />
 				<CustomInput name='email' type='email' placeholder='Почта' />
