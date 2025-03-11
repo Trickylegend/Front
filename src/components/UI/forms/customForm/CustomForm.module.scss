@@ -1,0 +1,14 @@
+.form{
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+
+
+	.button, .errorButton{
+		padding: 10px;
+	}
+
+	.errorButton{
+		background-color: #ffd3d3;
+	}
+}
