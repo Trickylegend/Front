@@ -12,7 +12,7 @@ interface CustomMutationOptions<
 > {
 	mutationKey: string[]
 	apiCall: (data: TVariables) => Promise<TData>
-	invalidateQueryKey?: readonly unknown[]
+	invalidateQueryKey?: string | undefined
 }
 
 export default function useCustomMutation<
@@ -41,7 +41,7 @@ export default function useCustomMutation<
 		},
 		onSuccess: () => {
 			if (invalidateQueryKey) {
-				queryClient.invalidateQueries({ queryKey: invalidateQueryKey })
+				queryClient.invalidateQueries({ queryKey: [invalidateQueryKey] })
 			}
 		},
 	})
