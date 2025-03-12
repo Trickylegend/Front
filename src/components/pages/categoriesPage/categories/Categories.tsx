@@ -31,7 +31,9 @@ export default function Categories() {
 					</div>
 				))}
 			</ul>
-			{activeCategory && <EditCategory category={activeCategory} />}
+			{activeCategory && (
+				<EditCategory key={activeCategory.id} category={activeCategory} />
+			)}
 		</>
 	)
 }

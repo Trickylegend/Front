@@ -35,9 +35,11 @@ export default function CustomForm<T>({
 		resolver: zodResolver(schema),
 	}) as ExtendedFormMethods<T>
 
-	React.useEffect(() => {
-		methods.reset(initialValues)
-	}, [initialValues, methods])
+	// React.useEffect(() => {
+	// 	if (Object.keys(initialValues as object).length > 0) {
+	// 		methods.reset(initialValues)
+	// 	}
+	// }, [initialValues, methods])
 
 	const [serverSuccess, setServerSuccess] = React.useState<string | null>(null)
 

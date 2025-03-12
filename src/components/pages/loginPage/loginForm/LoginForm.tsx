@@ -1,5 +1,4 @@
 'use client'
-
 import CustomForm from '@/components/UI/forms/customForm/CustomForm'
 import CustomInput from '@/components/UI/forms/customInput/CustomInput'
 import { ExtendedFormMethods } from '@/lib/types'
@@ -18,6 +17,8 @@ type LoginFormData = z.infer<typeof loginSchema>
 export default function LoginForm() {
 	const mutation = useLogin()
 
+	const defaultErrorMessage = 'Ошибка авторизации'
+
 	const onSubmit = async (
 		data: LoginFormData,
 		methods: ExtendedFormMethods<LoginFormData>
@@ -27,7 +28,7 @@ export default function LoginForm() {
 			methods.setServerSuccess(result.message)
 		} catch (error: any) {
 			methods.setError('root', {
-				message: error.response?.data?.message,
+				message: error.response?.data?.message || defaultErrorMessage,
 			})
 		}
 	}
@@ -38,7 +39,7 @@ export default function LoginForm() {
 			<CustomForm<LoginFormData>
 				schema={loginSchema}
 				onSubmit={onSubmit}
-				defaultErrorMessage={'Ошибка авторизации'}
+				defaultErrorMessage={defaultErrorMessage}
 			>
 				<CustomInput name='email' type='email' placeholder='Почта' />
 				<CustomInput name='password' type='password' placeholder='Пароль' />
