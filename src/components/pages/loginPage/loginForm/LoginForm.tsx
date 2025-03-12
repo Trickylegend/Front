@@ -6,6 +6,7 @@ import { z } from 'zod'
 import styles from './LoginForm.module.scss'
 
 import useLogin from '@/lib/hooks/reactQuery/auth/useLogin'
+import { useRouter } from 'next/navigation'
 
 const loginSchema = z.object({
 	email: z.string().email('Почта обязательна'),
@@ -16,6 +17,7 @@ type LoginFormData = z.infer<typeof loginSchema>
 
 export default function LoginForm() {
 	const mutation = useLogin()
+	const router = useRouter()
 
 	const defaultErrorMessage = 'Ошибка авторизации'
 
@@ -26,6 +28,7 @@ export default function LoginForm() {
 		try {
 			const result = await mutation.mutateAsync(data)
 			methods.setServerSuccess(result.message)
+			router.refresh()
 		} catch (error: any) {
 			methods.setError('root', {
 				message: error.response?.data?.message || defaultErrorMessage,

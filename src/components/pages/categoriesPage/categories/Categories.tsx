@@ -5,6 +5,7 @@ import { useCategories } from '@/lib/hooks/reactQuery/categories/useCategories'
 import { Category } from '@/lib/types'
 import React from 'react'
 import DeleteCategoryButton from './deleteCategoryButton/DeleteCategoryButton'
+import AddCategory from '../addCategory/AddCategory'
 
 export default function Categories() {
 	const { categories } = useCategories()
@@ -15,6 +16,7 @@ export default function Categories() {
 	return (
 		<>
 			<h2>Категории</h2>
+			<AddCategory />
 			<ul>
 				{categories?.map((category: Category) => (
 					<div key={category.id}>

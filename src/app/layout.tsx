@@ -1,3 +1,4 @@
+import Header from '@/components/UI/header/Header'
 import type { Metadata } from 'next'
 import ReactQueryProvider from '../lib/providers/ReactQueryProvider'
 import StoreProvider from '../lib/providers/StoreProvider'
@@ -17,7 +18,10 @@ export default function RootLayout({
 		<html lang='en'>
 			<body>
 				<StoreProvider>
-					<ReactQueryProvider>{children}</ReactQueryProvider>
+					<ReactQueryProvider>
+						<Header />
+						{children}
+					</ReactQueryProvider>
 				</StoreProvider>
 			</body>
 		</html>

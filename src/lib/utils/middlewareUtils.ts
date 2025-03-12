@@ -44,11 +44,13 @@ export const routeAccessConfig: Record<RouteType, Role[]> = {
 export const urlRouteTypeMap: Record<string, RouteType> = {
 	'/': ROUTE_TYPES.PUBLIC,
 	'/login': ROUTE_TYPES.PUBLIC,
+	'/favorites': ROUTE_TYPES.PROTECTED,
 	'/dashboard': ROUTE_TYPES.PROTECTED,
 	'/profile': ROUTE_TYPES.PROTECTED,
 	'/admin': ROUTE_TYPES.ADMIN,
 	'/manager': ROUTE_TYPES.MANAGER,
 	'/smanager': ROUTE_TYPES.SMANAGER,
+	'/categories': ROUTE_TYPES.SMANAGER,
 }
 
 export function hasAccess(userRole: Role, routeType: RouteType): boolean {

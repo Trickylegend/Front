@@ -36,6 +36,7 @@ export default function RegistrationForm() {
 
 	return (
 		<div className={styles.formContainer}>
+			<h2>Регистрация</h2>
 			<CustomForm<RegistrationFormData>
 				schema={registrationSchema}
 				onSubmit={onSubmit}

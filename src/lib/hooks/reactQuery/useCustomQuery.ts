@@ -40,7 +40,7 @@ export default function useCustomQuery({
 	successMessage = 'Данные успешно загружены',
 }: UseCustomQueryProps) {
 	const dispatch = useAppDispatch()
-	const { data, isSuccess, isError, error } = useQuery({
+	const { data, isSuccess, isLoading, isError, error } = useQuery({
 		queryKey: queryKeyValue ? [queryKeyName, queryKeyValue] : [queryKeyName],
 		queryFn: async () => {
 			const data = await getData({ queryKeyName, queryKeyValue })
@@ -69,6 +69,7 @@ export default function useCustomQuery({
 
 	return {
 		[queryKeyName]: data,
+		isLoading,
 		isSuccess,
 		isError,
 		error,
