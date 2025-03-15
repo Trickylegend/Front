@@ -1,3 +1,4 @@
+import Footer from '@/components/UI/footer/Footer'
 import Header from '@/components/UI/header/Header'
 import type { Metadata } from 'next'
 import ReactQueryProvider from '../lib/providers/ReactQueryProvider'
@@ -20,7 +21,8 @@ export default function RootLayout({
 				<StoreProvider>
 					<ReactQueryProvider>
 						<Header />
-						{children}
+						<div className='content'>{children}</div>
+						<Footer />
 					</ReactQueryProvider>
 				</StoreProvider>
 			</body>
