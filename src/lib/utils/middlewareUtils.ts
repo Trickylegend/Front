@@ -13,11 +13,11 @@ export const ROLES = {
 export type Role = (typeof ROLES)[keyof typeof ROLES]
 
 export const ROUTE_TYPES = {
-	PUBLIC: 'public',
-	PROTECTED: 'protected',
-	ADMIN: 'admin',
-	MANAGER: 'manager',
-	SMANAGER: 'smanager',
+	PUBLIC: 'PUBLIC',
+	PROTECTED: 'PROTECTED',
+	ADMIN: 'ADMIN',
+	MANAGER: 'MANAGER',
+	SERVICE_MANAGER: 'SERVICE_MANAGER',
 } as const
 
 export type RouteType = (typeof ROUTE_TYPES)[keyof typeof ROUTE_TYPES]
@@ -38,19 +38,14 @@ export const routeAccessConfig: Record<RouteType, Role[]> = {
 	],
 	[ROUTE_TYPES.ADMIN]: [ROLES.ADMIN],
 	[ROUTE_TYPES.MANAGER]: [ROLES.MANAGER],
-	[ROUTE_TYPES.SMANAGER]: [ROLES.SERVICE_MANAGER],
+	[ROUTE_TYPES.SERVICE_MANAGER]: [ROLES.SERVICE_MANAGER],
 }
 
 export const urlRouteTypeMap: Record<string, RouteType> = {
 	'/': ROUTE_TYPES.PUBLIC,
 	'/login': ROUTE_TYPES.PUBLIC,
-	'/favorites': ROUTE_TYPES.PROTECTED,
-	'/dashboard': ROUTE_TYPES.PROTECTED,
-	'/profile': ROUTE_TYPES.PROTECTED,
-	'/admin': ROUTE_TYPES.ADMIN,
-	'/manager': ROUTE_TYPES.MANAGER,
-	'/smanager': ROUTE_TYPES.SMANAGER,
-	'/categories': ROUTE_TYPES.SMANAGER,
+	'/registration': ROUTE_TYPES.PUBLIC,
+	'/smanager/*': ROUTE_TYPES.SERVICE_MANAGER,
 }
 
 export function hasAccess(userRole: Role, routeType: RouteType): boolean {
@@ -101,7 +96,8 @@ export async function checkAuthorization(
 	userRole: Role
 ): Promise<NextResponse | null> {
 	const { pathname } = request.nextUrl
-	const routeType: RouteType = urlRouteTypeMap[pathname] || ROUTE_TYPES.PUBLIC
+	const path = complicatedPath(pathname)
+	const routeType: RouteType = urlRouteTypeMap[path] || ROUTE_TYPES.PUBLIC
 
 	if (userRole === ROLES.GUEST && routeType !== ROUTE_TYPES.PUBLIC) {
 		return NextResponse.redirect(new URL('/login', request.nextUrl))
@@ -146,4 +142,10 @@ export async function fetchAccessTokenFromAPI(
 		console.error('Ошибка при вызове API токена:', error)
 		throw error
 	}
+}
+
+function complicatedPath(pathname: string): string {
+	return pathname.split('/').filter(el => el !== '').length > 1
+		? '/' + pathname.split('/')[1] + '/*'
+		: pathname
 }
