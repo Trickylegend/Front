@@ -8,6 +8,7 @@ export const ROLES = {
 	ADMIN: 'ADMIN',
 	MANAGER: 'MANAGER',
 	SERVICE_MANAGER: 'SERVICE_MANAGER',
+	EDITOR: 'EDITOR',
 } as const
 
 export type Role = (typeof ROLES)[keyof typeof ROLES]
@@ -18,6 +19,7 @@ export const ROUTE_TYPES = {
 	ADMIN: 'ADMIN',
 	MANAGER: 'MANAGER',
 	SERVICE_MANAGER: 'SERVICE_MANAGER',
+	EDITOR: 'EDITOR',
 } as const
 
 export type RouteType = (typeof ROUTE_TYPES)[keyof typeof ROUTE_TYPES]
@@ -29,23 +31,25 @@ export const routeAccessConfig: Record<RouteType, Role[]> = {
 		ROLES.ADMIN,
 		ROLES.MANAGER,
 		ROLES.SERVICE_MANAGER,
+		ROLES.EDITOR,
 	],
 	[ROUTE_TYPES.PROTECTED]: [
 		ROLES.USER,
 		ROLES.ADMIN,
 		ROLES.MANAGER,
 		ROLES.SERVICE_MANAGER,
+		ROLES.EDITOR,
 	],
 	[ROUTE_TYPES.ADMIN]: [ROLES.ADMIN],
 	[ROUTE_TYPES.MANAGER]: [ROLES.MANAGER],
 	[ROUTE_TYPES.SERVICE_MANAGER]: [ROLES.SERVICE_MANAGER],
+	[ROUTE_TYPES.EDITOR]: [ROLES.EDITOR],
 }
 
 export const urlRouteTypeMap: Record<string, RouteType> = {
-	'/': ROUTE_TYPES.PUBLIC,
-	'/login': ROUTE_TYPES.PUBLIC,
-	'/registration': ROUTE_TYPES.PUBLIC,
-	'/smanager/*': ROUTE_TYPES.SERVICE_MANAGER,
+	'/favorites': ROUTE_TYPES.PROTECTED,
+	'/smanager': ROUTE_TYPES.SERVICE_MANAGER,
+	'/editor': ROUTE_TYPES.EDITOR,
 }
 
 export function hasAccess(userRole: Role, routeType: RouteType): boolean {
