@@ -3,7 +3,7 @@ import {
 	UseMutationResult,
 	useQueryClient,
 } from '@tanstack/react-query'
-import { AxiosError, AxiosResponse } from 'axios'
+import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 
 interface CustomMutationOptions<
 	TVariables,
@@ -13,6 +13,7 @@ interface CustomMutationOptions<
 	mutationKey: string[]
 	apiCall: (data: TVariables) => Promise<TData>
 	invalidateQueryKey?: string | undefined
+	axiosConfig?: AxiosRequestConfig;
 }
 
 export default function useCustomMutation<

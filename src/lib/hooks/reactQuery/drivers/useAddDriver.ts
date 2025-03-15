@@ -2,19 +2,14 @@ import useCustomMutation from '@/lib/hooks/reactQuery/useCustomMutation'
 import axios from '@/lib/utils/axios'
 import { AxiosResponse } from 'axios'
 
-export interface LoginPayload {
-	email: string
-	password: string
-}
-
-export default function useLogin(
+export default function useAddDriver(
 	contentType: 'json' | 'multipart/form-data' = 'json'
 ) {
-	return useCustomMutation<LoginPayload, any, any>({
-		mutationKey: ['login'],
-		apiCall: (data: LoginPayload) =>
+	return useCustomMutation({
+		mutationKey: ['AddDriver'],
+		apiCall: (formData: FormData) =>
 			axios
-				.post('/login', data, {
+				.post('/drivers/test', formData, {
 					headers: {
 						'Content-Type':
 							contentType === 'multipart/form-data'
@@ -23,5 +18,6 @@ export default function useLogin(
 					},
 				})
 				.then((response: AxiosResponse) => response.data),
+		invalidateQueryKey: 'drivers',
 	})
 }
