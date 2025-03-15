@@ -1,7 +1,8 @@
 .container {
 	display: flex;
+	justify-content: center;
+	align-items: center;
 	gap: 30px;
-
 	.disabled {
 		opacity: 0.5;
 		pointer-events: none;

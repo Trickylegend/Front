@@ -1,0 +1,33 @@
+.inputContainer {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	.input::-webkit-file-upload-button{
+		padding: 10px;
+		border: 1px solid black;
+		border-radius: 5px;
+	}
+
+	.previewContainer{
+		display: flex;
+		flex-direction: row;
+		gap: 10px;
+
+		.previewItem{
+			border-radius: 5px;
+			padding: 5px;
+			background-color: #e0e0e0;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 5px;
+			.previewImage{
+				border-radius: 5px;
+				width: 50px;
+				height: 50px;
+			}
+		}
+	}
+}

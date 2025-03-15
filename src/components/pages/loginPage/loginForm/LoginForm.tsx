@@ -38,12 +38,12 @@ export default function LoginForm() {
 
 	return (
 		<div className={styles.formContainer}>
-			<h2>Авторизация</h2>
 			<CustomForm<LoginFormData>
 				schema={loginSchema}
 				onSubmit={onSubmit}
 				defaultErrorMessage={defaultErrorMessage}
 			>
+				<h2 className={styles.formTitle}>Авторизация</h2>
 				<CustomInput name='email' type='email' placeholder='Почта' />
 				<CustomInput name='password' type='password' placeholder='Пароль' />
 			</CustomForm>

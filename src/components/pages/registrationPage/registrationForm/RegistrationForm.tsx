@@ -36,12 +36,12 @@ export default function RegistrationForm() {
 
 	return (
 		<div className={styles.formContainer}>
-			<h2>Регистрация</h2>
 			<CustomForm<RegistrationFormData>
 				schema={registrationSchema}
 				onSubmit={onSubmit}
 				defaultErrorMessage={defaultErrorMessage}
 			>
+				<h2 className={styles.formTitle}>Регистрация</h2>
 				<CustomInput name='name' type='text' placeholder='Имя' />
 				<CustomInput name='email' type='email' placeholder='Почта' />
 				<CustomInput name='password' type='password' placeholder='Пароль' />

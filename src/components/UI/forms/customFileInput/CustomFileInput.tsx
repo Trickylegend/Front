@@ -38,16 +38,6 @@ export default function CustomFileInput({
 
 	return (
 		<div className={styles.inputContainer}>
-			<input
-				type='file'
-				{...register(name, { onChange: handleFileChange })}
-				multiple={multiple}
-				className={styles.input}
-				{...rest}
-			/>
-			{errors[name] && (
-				<div className={styles.error}>{errors[name]?.message as string}</div>
-			)}
 			{filePreviews.length > 0 && (
 				<div className={styles.previewContainer}>
 					{filePreviews.map((src, index) => (
@@ -63,6 +53,16 @@ export default function CustomFileInput({
 						</div>
 					))}
 				</div>
+			)}
+			<input
+				type='file'
+				{...register(name, { onChange: handleFileChange })}
+				multiple={multiple}
+				className={styles.input}
+				{...rest}
+			/>
+			{errors[name] && (
+				<div className={styles.error}>{errors[name]?.message as string}</div>
 			)}
 		</div>
 	)
