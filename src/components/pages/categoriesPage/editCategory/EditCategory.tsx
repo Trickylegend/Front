@@ -1,58 +1,45 @@
 import CustomForm from '@/components/UI/forms/customForm/CustomForm'
 import CustomInput from '@/components/UI/forms/customInput/CustomInput'
 import useEditCategory from '@/lib/hooks/reactQuery/categories/useEditCategory'
-import { Category, ExtendedFormMethods } from '@/lib/types'
-import { z } from 'zod'
+import { Category, CategoryEdit, categoryEditSchema } from '@/lib/types'
+import { createOnSubmit } from '@/lib/utils/createOnSubmit'
 import styles from './EditCategory.module.scss'
 
-const categorySchema = z.object({
-	name: z.string().min(1, 'Введите название категории'),
-	description: z.string(),
-})
+const defaultErrorMessage = 'Ошибка редактирования категории'
 
-type CategoryFormData = z.infer<typeof categorySchema>
-
-export default function EditCategory({
-	category,
-}: {
-	category: Category | undefined
-}) {
+export default function EditCategory({ category }: { category: Category }) {
 	const mutation = useEditCategory()
 
-	const defaultErrorMessage = 'Ошибка редактирования'
-
-	const onSubmit = async (
-		data: CategoryFormData,
-		methods: ExtendedFormMethods<CategoryFormData>
-	) => {
-		try {
-			const formData = {
-				id: category?.id,
-				...data,
-			}
-			const result = await mutation.mutateAsync(formData)
-			methods.setServerSuccess(result.message)
-		} catch (error: any) {
-			methods.setError('root', {
-				message: error.response?.data?.message || defaultErrorMessage,
-			})
+	const onSubmit = createOnSubmit<CategoryEdit>(
+		mutation,
+		{
+			defaultErrorMessage,
+		},
+		{
+			id: category.id,
 		}
+	)
+
+	const initialValues: CategoryEdit = {
+		id: category.id,
+		name: category.name,
+		description: category.description,
 	}
 
 	return (
-		<>
-			<div className={styles.formContainer}>
-				<h2>Редактирование категории – {category?.id}</h2>
-				<CustomForm<CategoryFormData>
-					schema={categorySchema}
-					onSubmit={onSubmit}
-					defaultErrorMessage={defaultErrorMessage}
-					initialValues={category as CategoryFormData}
-				>
-					<CustomInput name='name' type='text' placeholder='Название' />
-					<CustomInput name='description' type='text' placeholder='Описание' />
-				</CustomForm>
-			</div>
-		</>
+		<div className={styles.сontainer}>
+			<CustomForm<CategoryEdit>
+				schema={categoryEditSchema}
+				onSubmit={onSubmit}
+				defaultErrorMessage={defaultErrorMessage}
+				initialValues={initialValues}
+			>
+				<h2 className={styles.formTitle}>
+					Редактирование категории – {category.id}
+				</h2>
+				<CustomInput name='name' type='text' placeholder='Название' />
+				<CustomInput name='description' type='text' placeholder='Описание' />
+			</CustomForm>
+		</div>
 	)
 }

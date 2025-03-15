@@ -7,9 +7,9 @@ export default function useAddArticle(
 ) {
 	return useCustomMutation({
 		mutationKey: ['AddArticle'],
-		apiCall: (formData: FormData) =>
+		apiCall: (data: FormData | any) =>
 			axios
-				.post('/articles', formData, {
+				.post('/articles', data, {
 					headers: {
 						'Content-Type':
 							contentType === 'multipart/form-data'

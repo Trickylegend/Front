@@ -3,7 +3,6 @@ export function transformDataToFormData<T extends Record<string, any>>(
 	fileKeys: (keyof T)[] = []
 ): FormData {
 	const formData = new FormData()
-
 	Object.entries(data).forEach(([key, value]) => {
 		if (fileKeys.includes(key as keyof T)) {
 			if (Array.isArray(value)) {
@@ -14,14 +13,6 @@ export function transformDataToFormData<T extends Record<string, any>>(
 						formData.append(`${key}${index + 1}`, file)
 					})
 				}
-			} else if (value instanceof FileList) {
-				if (value.length === 1) {
-					formData.append(key, value[0])
-				} else if (value.length > 1) {
-					for (let i = 0; i < value.length; i++) {
-						formData.append(`${key}${i + 1}`, value[i])
-					}
-				}
 			}
 		} else {
 			if (value !== undefined && value !== null) {
@@ -29,6 +20,5 @@ export function transformDataToFormData<T extends Record<string, any>>(
 			}
 		}
 	})
-
 	return formData
 }

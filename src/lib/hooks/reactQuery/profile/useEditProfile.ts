@@ -7,9 +7,9 @@ export default function useEditProfile(
 ) {
 	return useCustomMutation({
 		mutationKey: ['EditProfile'],
-		apiCall: (formData: FormData) =>
+		apiCall: (data: FormData | any) =>
 			axios
-				.post('/account/edit', formData, {
+				.put(`/account`, data, {
 					headers: {
 						'Content-Type':
 							contentType === 'multipart/form-data'

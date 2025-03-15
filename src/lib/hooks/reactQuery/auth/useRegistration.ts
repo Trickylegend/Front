@@ -2,18 +2,12 @@ import useCustomMutation from '@/lib/hooks/reactQuery/useCustomMutation'
 import axios from '@/lib/utils/axios'
 import { AxiosResponse } from 'axios'
 
-export interface RegistrationPayload {
-	name: string
-	email: string
-	password: string
-}
-
 export default function useRegistration(
 	contentType: 'json' | 'multipart/form-data' = 'json'
 ) {
-	return useCustomMutation<RegistrationPayload, any, any>({
+	return useCustomMutation({
 		mutationKey: ['registration'],
-		apiCall: (data: RegistrationPayload) =>
+		apiCall: (data: FormData | any) =>
 			axios
 				.post('/registration', data, {
 					headers: {

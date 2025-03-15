@@ -1,7 +1,10 @@
-.container {
-	margin: 15vh auto;
+.сontainer {
+	margin: 15vh auto 0;
 	width: 300px;
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
+	.formTitle {
+		margin-bottom: 10px;
+	}
 }

@@ -1,44 +1,33 @@
 'use client'
 import CustomForm from '@/components/UI/forms/customForm/CustomForm'
 import CustomInput from '@/components/UI/forms/customInput/CustomInput'
-import { ExtendedFormMethods } from '@/lib/types'
-import { z } from 'zod'
+import useLogin from '@/lib/hooks/reactQuery/auth/useLogin'
+import { LoginPayload, loginSchema } from '@/lib/types'
+import { createOnSubmit } from '@/lib/utils/createOnSubmit'
+import { useRouter } from 'next/navigation'
 import styles from './LoginForm.module.scss'
 
-import useLogin from '@/lib/hooks/reactQuery/auth/useLogin'
-import { useRouter } from 'next/navigation'
-
-const loginSchema = z.object({
-	email: z.string().email('Почта обязательна'),
-	password: z.string().min(8, 'Минимальное количество символов - 8'),
-})
-
-type LoginFormData = z.infer<typeof loginSchema>
+const defaultErrorMessage = 'Ошибка авторизации'
 
 export default function LoginForm() {
 	const mutation = useLogin()
+
 	const router = useRouter()
 
-	const defaultErrorMessage = 'Ошибка авторизации'
-
-	const onSubmit = async (
-		data: LoginFormData,
-		methods: ExtendedFormMethods<LoginFormData>
-	) => {
-		try {
-			const result = await mutation.mutateAsync(data)
-			methods.setServerSuccess(result.message)
+	const onSubmit = createOnSubmit<LoginPayload>(
+		mutation,
+		{
+			defaultErrorMessage,
+		},
+		undefined,
+		() => {
 			router.refresh()
-		} catch (error: any) {
-			methods.setError('root', {
-				message: error.response?.data?.message || defaultErrorMessage,
-			})
 		}
-	}
+	)
 
 	return (
-		<div className={styles.formContainer}>
-			<CustomForm<LoginFormData>
+		<div className={styles.сontainer}>
+			<CustomForm<LoginPayload>
 				schema={loginSchema}
 				onSubmit={onSubmit}
 				defaultErrorMessage={defaultErrorMessage}

@@ -1,5 +1,4 @@
 import useCustomMutation from '@/lib/hooks/reactQuery/useCustomMutation'
-import { Category } from '@/lib/types'
 import axios from '@/lib/utils/axios'
 import { AxiosResponse } from 'axios'
 
@@ -8,23 +7,16 @@ export default function useEditCategory(
 ) {
 	return useCustomMutation({
 		mutationKey: ['EditCategory'],
-		apiCall: (data: Category) =>
+		apiCall: (data: FormData | any) =>
 			axios
-				.put(
-					`/categories/${data.id}`,
-					{
-						name: data.name,
-						description: data.description,
+				.put(`/categories/${data.id}`, data, {
+					headers: {
+						'Content-Type':
+							contentType === 'multipart/form-data'
+								? 'multipart/form-data'
+								: 'application/json',
 					},
-					{
-						headers: {
-							'Content-Type':
-								contentType === 'multipart/form-data'
-									? 'multipart/form-data'
-									: 'application/json',
-						},
-					}
-				)
+				})
 				.then((response: AxiosResponse) => response.data),
 		invalidateQueryKey: 'categories',
 	})

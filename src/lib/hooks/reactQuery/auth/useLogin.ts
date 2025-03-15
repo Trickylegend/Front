@@ -2,17 +2,12 @@ import useCustomMutation from '@/lib/hooks/reactQuery/useCustomMutation'
 import axios from '@/lib/utils/axios'
 import { AxiosResponse } from 'axios'
 
-export interface LoginPayload {
-	email: string
-	password: string
-}
-
 export default function useLogin(
 	contentType: 'json' | 'multipart/form-data' = 'json'
 ) {
-	return useCustomMutation<LoginPayload, any, any>({
+	return useCustomMutation({
 		mutationKey: ['login'],
-		apiCall: (data: LoginPayload) =>
+		apiCall: (data: FormData | any) =>
 			axios
 				.post('/login', data, {
 					headers: {

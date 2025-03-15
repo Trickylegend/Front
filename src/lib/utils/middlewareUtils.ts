@@ -49,7 +49,7 @@ export const routeAccessConfig: Record<RouteType, Role[]> = {
 export const urlRouteTypeMap: Record<string, RouteType> = {
 	'/favorites': ROUTE_TYPES.PROTECTED,
 	'/smanager': ROUTE_TYPES.SERVICE_MANAGER,
-	'/editor': ROUTE_TYPES.EDITOR,
+	'/editor': ROUTE_TYPES.SERVICE_MANAGER,
 }
 
 export function hasAccess(userRole: Role, routeType: RouteType): boolean {

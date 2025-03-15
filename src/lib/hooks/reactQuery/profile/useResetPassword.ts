@@ -6,10 +6,10 @@ export default function useResetPassword(
 	contentType: 'json' | 'multipart/form-data' = 'json'
 ) {
 	return useCustomMutation({
-		mutationKey: ['ResetPassword'],
-		apiCall: (formData: FormData) =>
+		mutationKey: ['EditResetPasswordProfile'],
+		apiCall: (data: FormData | any) =>
 			axios
-				.post('/account/reset/password', formData, {
+				.post(`/account/reset/password`, data, {
 					headers: {
 						'Content-Type':
 							contentType === 'multipart/form-data'

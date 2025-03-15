@@ -7,9 +7,9 @@ export default function useAddDriver(
 ) {
 	return useCustomMutation({
 		mutationKey: ['AddDriver'],
-		apiCall: (formData: FormData) =>
+		apiCall: (data: FormData | any) =>
 			axios
-				.post('/drivers/test', formData, {
+				.post('/drivers', data, {
 					headers: {
 						'Content-Type':
 							contentType === 'multipart/form-data'

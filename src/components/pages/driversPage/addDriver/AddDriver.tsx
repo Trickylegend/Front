@@ -3,54 +3,33 @@ import CustomFileInput from '@/components/UI/forms/customFileInput/CustomFileInp
 import CustomForm from '@/components/UI/forms/customForm/CustomForm'
 import CustomInput from '@/components/UI/forms/customInput/CustomInput'
 import useAddDriver from '@/lib/hooks/reactQuery/drivers/useAddDriver'
+import { DriverCreate, driverCreateSchema } from '@/lib/types'
 import { createOnSubmit } from '@/lib/utils/createOnSubmit'
-import { z } from 'zod'
 import styles from './AddDriver.module.scss'
 
-export const driverSchema = z.object({
-	name: z.string().min(1, 'Введите имя'),
-	description: z.string().optional().default(''),
-	isAvailable: z.boolean().default(false),
-	avatar: z
-		.any()
-		.refine(val => {
-			if (typeof window !== 'undefined') {
-				return val instanceof FileList && val.length > 0
-			}
-			return true
-		}, 'Файл обязателен')
-		.optional(),
-})
-
-const defaultErrorMessage = 'Ошибка добавления'
-
-type DriverFormData = z.infer<typeof driverSchema>
+const defaultErrorMessage = 'Ошибка добавления водителя'
 
 export default function AddDriver() {
 	const mutation = useAddDriver('multipart/form-data')
 
-	const onSubmit = createOnSubmit<DriverFormData>(mutation, {
+	const onSubmit = createOnSubmit<DriverCreate>(mutation, {
 		useFormData: true,
 		fileKeys: ['avatar'],
 		defaultErrorMessage: defaultErrorMessage,
 	})
 
 	return (
-		<>
-			<div className={styles.formContainer}>
-				<h2>Добавление водителя</h2>
-				<CustomForm<DriverFormData>
-					schema={driverSchema}
-					onSubmit={onSubmit}
-					defaultErrorMessage={defaultErrorMessage}
-					buttonDefaultMessage='Создать'
-					buttonSuccessMessage='Успешно создано'
-				>
-					<CustomInput name='name' type='text' placeholder='Имя' />
-					<CustomInput name='description' type='text' placeholder='Описание' />
-					<CustomFileInput name='avatar' multiple />
-				</CustomForm>
-			</div>
-		</>
+		<div className={styles.сontainer}>
+			<CustomForm<DriverCreate>
+				schema={driverCreateSchema}
+				onSubmit={onSubmit}
+				defaultErrorMessage={defaultErrorMessage}
+			>
+				<h2 className={styles.formTitle}>Добавление новости</h2>
+				<CustomInput name='name' type='text' placeholder='Имя' />
+				<CustomInput name='description' type='text' placeholder='Описание' />
+				<CustomFileInput name='avatar' multiple />
+			</CustomForm>
+		</div>
 	)
 }
