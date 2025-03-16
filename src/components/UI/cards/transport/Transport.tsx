@@ -40,6 +40,15 @@ export default function Transport({
 					<button>
 						{transport.isAvailable ? 'Деактивировать' : 'Активировать'}
 					</button>
+					{(transport.serviceStatus === 'inService' ||
+						transport.serviceStatus === 'required') && (
+						<button>
+							{transport.serviceStatus === 'inService' &&
+								'Забрать с обслуживания'}
+							{transport.serviceStatus === 'required' &&
+								'Отправить на обслуживание'}
+						</button>
+					)}
 					<button>Изменить</button>
 					<button>Удалить</button>
 				</div>

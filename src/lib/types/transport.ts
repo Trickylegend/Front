@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export type ServiceStatus = 'required' | 'notRequired' | 'isService'
+export type ServiceStatus = 'required' | 'notRequired' | 'inService'
 
 export interface Transport {
 	id: string
