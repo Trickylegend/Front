@@ -5,7 +5,7 @@ import CustomInput from '@/components/UI/forms/customInput/CustomInput'
 import useEditArticle from '@/lib/hooks/reactQuery/articles/useEditArticle'
 import { Article, ArticleEdit, articleEditSchema } from '@/lib/types'
 import { createOnSubmit } from '@/lib/utils/createOnSubmit'
-import styles from './CreateArticle.module.scss'
+import styles from './EditArticle.module.scss'
 
 const defaultErrorMessage = 'Ошибка редактирования новости'
 

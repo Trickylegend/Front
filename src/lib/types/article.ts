@@ -5,7 +5,7 @@ export interface Article {
 	title: string
 	description: string
 	isActive: boolean
-	preview: string
+	preview?: string
 }
 
 export interface ArticleCreate {
