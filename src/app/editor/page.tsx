@@ -1,6 +1,6 @@
-import Articles from '@/components/pages/ROLES/EDITOR/articles/Articles'
-import CreateArticle from '@/components/pages/ROLES/EDITOR/createArticle/CreateArticle'
-import EditArticle from '@/components/pages/ROLES/EDITOR/editArticle/EditArticle'
+import Articles from '@/components/pages/ROLES/EDITOR/article/articles/Articles'
+import CreateArticle from '@/components/pages/ROLES/EDITOR/article/createArticle/CreateArticle'
+import EditArticle from '@/components/pages/ROLES/EDITOR/article/editArticle/EditArticle'
 import { Article } from '@/lib/types'
 
 const article: Article = {

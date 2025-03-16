@@ -5,7 +5,7 @@ export interface Driver {
 	name: string
 	description: string
 	isAvailable: boolean
-	avatar: string
+	avatar?: string
 }
 
 export interface DriverCreate {

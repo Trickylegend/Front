@@ -1,6 +1,6 @@
-import CreateUser from '@/components/pages/ROLES/ADMIN/createUser/CreateUser'
-import EditUser from '@/components/pages/ROLES/ADMIN/editUser/EditUser'
-import Users from '@/components/pages/ROLES/ADMIN/users/Users'
+import CreateUser from '@/components/pages/ROLES/ADMIN/user/createUser/CreateUser'
+import EditUser from '@/components/pages/ROLES/ADMIN/user/editUser/EditUser'
+import Users from '@/components/pages/ROLES/ADMIN/user/users/Users'
 import { User } from '@/lib/types'
 
 const user: User = {
