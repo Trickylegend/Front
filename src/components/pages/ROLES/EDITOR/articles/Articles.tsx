@@ -1,4 +1,5 @@
 'use client'
+
 import Article from '@/components/UI/cards/article/Article'
 import { Article as ArticleType } from '@/lib/types'
 import styles from './Articles.module.scss'

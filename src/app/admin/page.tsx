@@ -1,5 +1,6 @@
 import CreateUser from '@/components/pages/ROLES/ADMIN/createUser/CreateUser'
 import EditUser from '@/components/pages/ROLES/ADMIN/editUser/EditUser'
+import Users from '@/components/pages/ROLES/ADMIN/users/Users'
 import { User } from '@/lib/types'
 
 const user: User = {
@@ -15,6 +16,7 @@ const user: User = {
 export default function page() {
 	return (
 		<>
+			<Users />
 			<CreateUser />
 			<EditUser user={user} />
 		</>

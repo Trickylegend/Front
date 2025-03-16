@@ -6,10 +6,10 @@ export interface User {
 	id: string
 	name: string
 	email: string
-	password: string
+	password?: string
 	isActive: boolean
 	role: Role
-	avatar: string
+	avatar?: string
 }
 
 export interface UserCreate {
