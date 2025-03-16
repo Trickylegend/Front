@@ -7,7 +7,7 @@ export interface User {
 	name: string
 	email: string
 	password: string
-	isActive: string
+	isActive: boolean
 	role: Role
 	avatar: string
 }
@@ -17,6 +17,7 @@ export interface UserCreate {
 	email: string
 	password: string
 	role: Role
+	isActive: boolean
 	avatar?: File[]
 }
 
@@ -26,6 +27,7 @@ export interface UserEdit {
 	email: string
 	password?: string
 	role: Role
+	isActive: boolean
 	avatar?: File[]
 }
 
@@ -34,7 +36,8 @@ export const userCreateSchema = z.object({
 	email: z.string().email('Неверный email'),
 	password: z.string().min(6, 'Минимум 6 символов'),
 	role: z.enum(['USER', 'ADMIN', 'MANAGER', 'SERVICE_MANAGER', 'EDITOR']),
-	preview: z.preprocess(val => {
+	isActive: z.boolean().default(false),
+	avatar: z.preprocess(val => {
 		return val instanceof FileList ? Array.from(val) : val
 	}, z.array(z.instanceof(File)).optional()),
 })
@@ -45,7 +48,8 @@ export const userEditSchema = z.object({
 	email: z.string().email('Неверный email'),
 	password: z.optional(z.string()),
 	role: z.enum(['USER', 'ADMIN', 'MANAGER', 'SERVICE_MANAGER', 'EDITOR']),
-	preview: z.preprocess(val => {
+	isActive: z.boolean().default(false),
+	avatar: z.preprocess(val => {
 		return val instanceof FileList ? Array.from(val) : val
 	}, z.array(z.instanceof(File)).optional()),
 })

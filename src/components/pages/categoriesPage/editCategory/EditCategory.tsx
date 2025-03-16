@@ -1,3 +1,5 @@
+'use client'
+
 import CustomForm from '@/components/UI/forms/customForm/CustomForm'
 import CustomInput from '@/components/UI/forms/customInput/CustomInput'
 import useEditCategory from '@/lib/hooks/reactQuery/categories/useEditCategory'
@@ -10,15 +12,9 @@ const defaultErrorMessage = 'Ошибка редактирования кате�
 export default function EditCategory({ category }: { category: Category }) {
 	const mutation = useEditCategory()
 
-	const onSubmit = createOnSubmit<CategoryEdit>(
-		mutation,
-		{
-			defaultErrorMessage,
-		},
-		{
-			id: category.id,
-		}
-	)
+	const onSubmit = createOnSubmit<CategoryEdit>(mutation, {
+		defaultErrorMessage,
+	})
 
 	const initialValues: CategoryEdit = {
 		id: category.id,
@@ -33,10 +29,8 @@ export default function EditCategory({ category }: { category: Category }) {
 				onSubmit={onSubmit}
 				defaultErrorMessage={defaultErrorMessage}
 				initialValues={initialValues}
+				formTitle={`Редактирование категории – ${category.id}`}
 			>
-				<h2 className={styles.formTitle}>
-					Редактирование категории – {category.id}
-				</h2>
 				<CustomInput name='name' type='text' placeholder='Название' />
 				<CustomInput name='description' type='text' placeholder='Описание' />
 			</CustomForm>

@@ -9,14 +9,18 @@ export default function useEditDriver(
 		mutationKey: ['EditDriver'],
 		apiCall: (data: FormData | any) =>
 			axios
-				.put(`/drivers/${data.id}`, data, {
-					headers: {
-						'Content-Type':
-							contentType === 'multipart/form-data'
-								? 'multipart/form-data'
-								: 'application/json',
-					},
-				})
+				.put(
+					`/drivers/${contentType == 'json' ? data.id : data.get('id')}`,
+					data,
+					{
+						headers: {
+							'Content-Type':
+								contentType === 'multipart/form-data'
+									? 'multipart/form-data'
+									: 'application/json',
+						},
+					}
+				)
 				.then((response: AxiosResponse) => response.data),
 		invalidateQueryKey: 'drivers',
 	})

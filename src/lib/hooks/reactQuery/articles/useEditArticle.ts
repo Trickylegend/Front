@@ -9,14 +9,18 @@ export default function useEditArticle(
 		mutationKey: ['EditArticle'],
 		apiCall: (data: FormData | any) =>
 			axios
-				.put(`/articles/${data.id}`, data, {
-					headers: {
-						'Content-Type':
-							contentType === 'multipart/form-data'
-								? 'multipart/form-data'
-								: 'application/json',
-					},
-				})
+				.put(
+					`/articles/${contentType == 'json' ? data.id : data.get('id')}`,
+					data,
+					{
+						headers: {
+							'Content-Type':
+								contentType === 'multipart/form-data'
+									? 'multipart/form-data'
+									: 'application/json',
+						},
+					}
+				)
 				.then((response: AxiosResponse) => response.data),
 		invalidateQueryKey: 'articles',
 	})

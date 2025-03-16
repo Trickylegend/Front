@@ -12,6 +12,11 @@ export interface ProfileEdit {
 	avatar?: File[]
 }
 
+export interface ProfileBasic {
+	name: string
+	avatar: string
+}
+
 export interface ResetPasswordProfile {
 	oldPassword: string
 	newPassword: string

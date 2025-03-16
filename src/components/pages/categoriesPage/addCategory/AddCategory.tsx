@@ -20,8 +20,8 @@ export default function AddCategory() {
 				schema={categoryCreateSchema}
 				onSubmit={onSubmit}
 				defaultErrorMessage={defaultErrorMessage}
+				formTitle='Создание категории'
 			>
-				<h2 className={styles.formTitle}>Создание категории</h2>
 				<CustomInput name='name' type='text' placeholder='Название' />
 				<CustomInput name='description' type='text' placeholder='Описание' />
 			</CustomForm>

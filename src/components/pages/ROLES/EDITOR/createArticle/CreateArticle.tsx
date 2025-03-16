@@ -25,8 +25,8 @@ export default function CreateArticle() {
 				schema={articleCreateSchema}
 				onSubmit={onSubmit}
 				defaultErrorMessage={defaultErrorMessage}
+				formTitle='Добавление новости'
 			>
-				<h2 className={styles.formTitle}>Добавление новости</h2>
 				<CustomInput name='title' type='text' placeholder='Заголовок' />
 				<CustomInput name='description' type='text' placeholder='Описание' />
 				<CustomFileInput name='preview' multiple />

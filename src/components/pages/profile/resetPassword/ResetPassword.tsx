@@ -22,8 +22,8 @@ export default function ResetPassword() {
 				schema={resetPasswordSchema}
 				onSubmit={onSubmit}
 				defaultErrorMessage={defaultErrorMessage}
+				formTitle='Редактирование пароля'
 			>
-				<h2 className={styles.formTitle}>Редактирование пароля</h2>
 				<CustomInput
 					name='oldPassword'
 					type='password'

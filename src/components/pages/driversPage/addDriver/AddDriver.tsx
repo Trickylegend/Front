@@ -24,8 +24,8 @@ export default function AddDriver() {
 				schema={driverCreateSchema}
 				onSubmit={onSubmit}
 				defaultErrorMessage={defaultErrorMessage}
+				formTitle='Добавление водителя'
 			>
-				<h2 className={styles.formTitle}>Добавление новости</h2>
 				<CustomInput name='name' type='text' placeholder='Имя' />
 				<CustomInput name='description' type='text' placeholder='Описание' />
 				<CustomFileInput name='avatar' multiple />

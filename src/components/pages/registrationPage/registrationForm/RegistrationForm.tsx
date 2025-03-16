@@ -22,8 +22,8 @@ export default function RegistrationForm() {
 				schema={registrationSchema}
 				onSubmit={onSubmit}
 				defaultErrorMessage={defaultErrorMessage}
+				formTitle='Регистрация'
 			>
-				<h2 className={styles.formTitle}>Регистрация</h2>
 				<CustomInput name='name' type='text' placeholder='Имя' />
 				<CustomInput name='email' type='email' placeholder='Почта' />
 				<CustomInput name='password' type='password' placeholder='Пароль' />

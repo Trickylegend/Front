@@ -22,11 +22,23 @@ export default function CustomSelect({
 	} = useFormContext()
 
 	return (
-		<div className={styles.field}>
-			{label && <label htmlFor={name}>{label}</label>}
-			<select id={name} {...register(name)} {...rest}>
-				{children}
-			</select>
+		<div className={styles.selectContainer}>
+			{label && (
+				<label htmlFor={name} className={styles.label}>
+					{label}
+				</label>
+			)}
+			<div className={styles.customSelectWrapper}>
+				<select
+					id={name}
+					{...register(name)}
+					{...rest}
+					className={styles.select}
+				>
+					{children}
+				</select>
+				<span className={styles.customArrow}></span>
+			</div>
 			{errors[name] && (
 				<div className={styles.error}>{errors[name]?.message as string}</div>
 			)}

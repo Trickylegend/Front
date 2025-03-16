@@ -9,14 +9,18 @@ export default function useEditCategory(
 		mutationKey: ['EditCategory'],
 		apiCall: (data: FormData | any) =>
 			axios
-				.put(`/categories/${data.id}`, data, {
-					headers: {
-						'Content-Type':
-							contentType === 'multipart/form-data'
-								? 'multipart/form-data'
-								: 'application/json',
-					},
-				})
+				.put(
+					`/categories/${contentType == 'json' ? data.id : data.get('id')}`,
+					data,
+					{
+						headers: {
+							'Content-Type':
+								contentType === 'multipart/form-data'
+									? 'multipart/form-data'
+									: 'application/json',
+						},
+					}
+				)
 				.then((response: AxiosResponse) => response.data),
 		invalidateQueryKey: 'categories',
 	})

@@ -31,8 +31,8 @@ export default function LoginForm() {
 				schema={loginSchema}
 				onSubmit={onSubmit}
 				defaultErrorMessage={defaultErrorMessage}
+				formTitle='Авторизация'
 			>
-				<h2 className={styles.formTitle}>Авторизация</h2>
 				<CustomInput name='email' type='email' placeholder='Почта' />
 				<CustomInput name='password' type='password' placeholder='Пароль' />
 			</CustomForm>

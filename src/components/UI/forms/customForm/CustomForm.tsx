@@ -16,6 +16,7 @@ type CustomFormProps<T> = {
 	buttonDefaultMessage?: string
 	buttonErrorMessage?: string
 	buttonSuccessMessage?: string
+	formTitle?: string
 	children: React.ReactNode
 }
 
@@ -28,18 +29,13 @@ export default function CustomForm<T>({
 	buttonPendingMessage = 'Сохранение..',
 	buttonErrorMessage = 'Ошибка',
 	buttonSuccessMessage = 'Успешно',
+	formTitle,
 	children,
 }: CustomFormProps<T>) {
 	const methods = useForm<T>({
 		defaultValues: initialValues,
 		resolver: zodResolver(schema),
 	}) as ExtendedFormMethods<T>
-
-	// React.useEffect(() => {
-	// 	if (Object.keys(initialValues as object).length > 0) {
-	// 		methods.reset(initialValues)
-	// 	}
-	// }, [initialValues, methods])
 
 	const [serverSuccess, setServerSuccess] = React.useState<string | null>(null)
 
@@ -87,6 +83,7 @@ export default function CustomForm<T>({
 				onSubmit={handleSubmit(handleCustomSubmit)}
 				noValidate
 			>
+				{formTitle && <h2 className={styles.formTitle}>{formTitle}</h2>}
 				{children}
 				<button disabled={isDisabled} type='submit' className={buttonClass}>
 					{buttonText}

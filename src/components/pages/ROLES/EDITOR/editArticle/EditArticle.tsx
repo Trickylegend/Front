@@ -12,15 +12,11 @@ const defaultErrorMessage = 'Ошибка редактирования ново�
 export default function EditArticle({ article }: { article: Article }) {
 	const mutation = useEditArticle('multipart/form-data')
 
-	const onSubmit = createOnSubmit<ArticleEdit>(
-		mutation,
-		{
-			useFormData: true,
-			fileKeys: ['preview'],
-			defaultErrorMessage: defaultErrorMessage,
-		},
-		{ id: article.id }
-	)
+	const onSubmit = createOnSubmit<ArticleEdit>(mutation, {
+		useFormData: true,
+		fileKeys: ['preview'],
+		defaultErrorMessage: defaultErrorMessage,
+	})
 
 	const initialValues: ArticleEdit = {
 		id: article.id,
@@ -35,8 +31,8 @@ export default function EditArticle({ article }: { article: Article }) {
 				onSubmit={onSubmit}
 				defaultErrorMessage={defaultErrorMessage}
 				initialValues={initialValues}
+				formTitle={`Редактирование новости - ${article.id}`}
 			>
-				<h2 className={styles.formTitle}>Редактирование новости</h2>
 				<CustomInput name='title' type='text' placeholder='Заголовок' />
 				<CustomInput name='description' type='text' placeholder='Описание' />
 				<CustomFileInput name='preview' />
