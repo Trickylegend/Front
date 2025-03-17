@@ -6,12 +6,14 @@ import styles from './Article.module.scss'
 export default function Article({
 	article,
 	control = false,
+	onClick = () => {},
 }: {
 	article: ArticleType
 	control: boolean
+	onClick: () => void
 }) {
 	return (
-		<div className={styles.container}>
+		<div className={styles.container} onClick={onClick}>
 			<div className={styles.imageContainer}>
 				{article.preview ? (
 					<Image
