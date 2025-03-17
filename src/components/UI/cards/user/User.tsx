@@ -6,7 +6,7 @@ import styles from './User.module.scss'
 export default function User({
 	user,
 	control,
-	onClick,
+	onClick = () => {},
 }: {
 	user: UserType
 	control: boolean

@@ -6,12 +6,14 @@ import styles from './Driver.module.scss'
 export default function Driver({
 	driver,
 	control = false,
+	onClick = () => {},
 }: {
 	driver: DriverType
 	control: boolean
+	onClick: () => void
 }) {
 	return (
-		<div className={styles.container}>
+		<div className={styles.container} onClick={onClick}>
 			<div className={styles.imageContainer}>
 				{driver.avatar ? (
 					<Image
