@@ -6,14 +6,14 @@ import styles from './Transport.module.scss'
 export default function Transport({
 	transport,
 	control = false,
-	onClick = () => {},
+	onEdit = () => {},
 }: {
 	transport: TransportType
 	control: boolean
-	onClick: () => void
+	onEdit: () => void
 }) {
 	return (
-		<div className={styles.container} onClick={onClick}>
+		<div className={styles.container}>
 			<div className={styles.imageContainer}>
 				{transport.preview ? (
 					<Image
@@ -51,7 +51,7 @@ export default function Transport({
 								'Отправить на обслуживание'}
 						</button>
 					)}
-					<button>Изменить</button>
+					<button onClick={onEdit}>Изменить</button>
 					<button>Удалить</button>
 				</div>
 			)}

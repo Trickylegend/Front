@@ -6,14 +6,14 @@ import styles from './User.module.scss'
 export default function User({
 	user,
 	control,
-	onClick = () => {},
+	onEdit = () => {},
 }: {
 	user: UserType
 	control: boolean
-	onClick: () => void
+	onEdit: () => void
 }) {
 	return (
-		<div className={styles.container} onClick={onClick}>
+		<div className={styles.container}>
 			<div className={styles.imageContainer}>
 				{user.avatar ? (
 					<Image src={user.avatar} width={100} height={100} alt={user.name} />
@@ -32,7 +32,7 @@ export default function User({
 			{control && (
 				<div className={styles.controlContainer}>
 					<button>{user.isActive ? 'Деактивировать' : 'Активировать'}</button>
-					<button>Изменить</button>
+					<button onClick={onEdit}>Изменить</button>
 					<button>Удалить</button>
 				</div>
 			)}

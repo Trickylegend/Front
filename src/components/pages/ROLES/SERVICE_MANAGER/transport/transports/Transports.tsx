@@ -57,7 +57,7 @@ export default function Transports() {
 						key={transportItem.id}
 						transport={transportItem}
 						control={true}
-						onClick={() => setActiveTransport(transportItem)}
+						onEdit={() => setActiveTransport(transportItem)}
 					/>
 				))}
 			</div>

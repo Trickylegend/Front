@@ -41,7 +41,7 @@ export default function Drivers() {
 						key={driver.id}
 						driver={driver}
 						control={true}
-						onClick={() => setActiveDriver(driver)}
+						onEdit={() => setActiveDriver(driver)}
 					/>
 				))}
 			</div>

@@ -41,7 +41,7 @@ export default function Articles() {
 						key={article.id}
 						article={article}
 						control={true}
-						onClick={() => setActiveArticle(article)}
+						onEdit={() => setActiveArticle(article)}
 					/>
 				))}
 			</div>

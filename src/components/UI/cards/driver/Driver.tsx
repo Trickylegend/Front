@@ -6,14 +6,14 @@ import styles from './Driver.module.scss'
 export default function Driver({
 	driver,
 	control = false,
-	onClick = () => {},
+	onEdit = () => {},
 }: {
 	driver: DriverType
 	control: boolean
-	onClick: () => void
+	onEdit: () => void
 }) {
 	return (
-		<div className={styles.container} onClick={onClick}>
+		<div className={styles.container}>
 			<div className={styles.imageContainer}>
 				{driver.avatar ? (
 					<Image
@@ -35,7 +35,7 @@ export default function Driver({
 					<button>
 						{driver.isAvailable ? 'Деактивировать' : 'Активировать'}
 					</button>
-					<button>Изменить</button>
+					<button onClick={onEdit}>Изменить</button>
 					<button>Удалить</button>
 				</div>
 			)}

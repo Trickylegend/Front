@@ -42,7 +42,7 @@ export default function Users() {
 						key={user.id}
 						user={user}
 						control={true}
-						onClick={() => setActiveUser(user)}
+						onEdit={() => setActiveUser(user)}
 					/>
 				))}
 			</div>

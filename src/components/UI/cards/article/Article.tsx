@@ -6,14 +6,14 @@ import styles from './Article.module.scss'
 export default function Article({
 	article,
 	control = false,
-	onClick = () => {},
+	onEdit = () => {},
 }: {
 	article: ArticleType
 	control: boolean
-	onClick: () => void
+	onEdit: () => void
 }) {
 	return (
-		<div className={styles.container} onClick={onClick}>
+		<div className={styles.container}>
 			<div className={styles.imageContainer}>
 				{article.preview ? (
 					<Image
@@ -35,7 +35,7 @@ export default function Article({
 					<button>
 						{article.isActive ? 'Деактивировать' : 'Активировать'}
 					</button>
-					<button>Изменить</button>
+					<button onClick={onEdit}>Изменить</button>
 					<button>Удалить</button>
 				</div>
 			)}
