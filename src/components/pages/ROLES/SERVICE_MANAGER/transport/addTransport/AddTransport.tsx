@@ -6,13 +6,17 @@ import CustomForm from '@/components/UI/forms/customForm/CustomForm'
 import CustomInput from '@/components/UI/forms/customInput/CustomInput'
 import CustomSelect from '@/components/UI/forms/customSelect/CustomSelect'
 import useAddTransport from '@/lib/hooks/reactQuery/transport/useAddTransport'
-import { TransportCreate, transportCreateSchema } from '@/lib/types'
+import { Category, TransportCreate, transportCreateSchema } from '@/lib/types'
 import { createOnSubmit } from '@/lib/utils/createOnSubmit'
 import styles from './AddTransport.module.scss'
 
 const defaultErrorMessage = 'Ошибка добавления транспорта'
 
-export default function AddTransport() {
+export default function AddTransport({
+	categories,
+}: {
+	categories: Category[]
+}) {
 	const mutation = useAddTransport('multipart/form-data')
 
 	const onSubmit = createOnSubmit<TransportCreate>(mutation, {
@@ -41,6 +45,13 @@ export default function AddTransport() {
 					<option value={'required'}>Требуется обслуживание</option>
 					<option value={'notRequired'}>Обслуживание не требуется</option>
 					<option value={'isService'}>Находится в обслуживании</option>
+				</CustomSelect>
+				<CustomSelect name='categoryId'>
+					{categories?.map((category: Category) => (
+						<option key={category.id} value={category.id}>
+							{category.name}
+						</option>
+					))}
 				</CustomSelect>
 				<CustomInput
 					name='serviceStandard'

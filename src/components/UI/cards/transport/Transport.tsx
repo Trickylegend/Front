@@ -6,12 +6,14 @@ import styles from './Transport.module.scss'
 export default function Transport({
 	transport,
 	control = false,
+	onClick = () => {},
 }: {
 	transport: TransportType
 	control: boolean
+	onClick: () => void
 }) {
 	return (
-		<div className={styles.container}>
+		<div className={styles.container} onClick={onClick}>
 			<div className={styles.imageContainer}>
 				{transport.preview ? (
 					<Image

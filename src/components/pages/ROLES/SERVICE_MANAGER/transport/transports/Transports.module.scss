@@ -4,6 +4,13 @@
 	gap: 30px;
 
 	padding: 40px 20px;
+	.controlContainer {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 30px;
+	}
 
 	.flexContainer {
 		display: flex;
