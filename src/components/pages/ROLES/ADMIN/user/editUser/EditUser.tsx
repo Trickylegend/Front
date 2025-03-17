@@ -31,7 +31,7 @@ export default function EditUser({ user }: { user: User }) {
 	}
 
 	return (
-		<div className={styles.formContainer}>
+		<div className={styles.container}>
 			<CustomForm<UserEdit>
 				schema={userEditSchema}
 				onSubmit={onSubmit}

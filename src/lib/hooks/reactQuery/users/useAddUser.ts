@@ -9,7 +9,7 @@ export default function useAddUser(
 		mutationKey: ['AddUser'],
 		apiCall: (data: FormData | any) =>
 			axios
-				.post('/users/create', data, {
+				.post('/users', data, {
 					headers: {
 						'Content-Type':
 							contentType === 'multipart/form-data'
