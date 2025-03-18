@@ -13,6 +13,8 @@ export default function EditProfile({ info }: { info: ProfileBasic }) {
 	const mutation = useEditProfile('multipart/form-data')
 
 	const onSubmit = createOnSubmit<ProfileEdit>(mutation, {
+		useFormData: true,
+		fileKeys: ['avatar'],
 		defaultErrorMessage: defaultErrorMessage,
 	})
 

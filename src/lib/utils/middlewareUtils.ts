@@ -87,6 +87,7 @@ export async function getUserRole(
 		const { payload } = (await jwtVerify(accessToken, encodedKey, {
 			algorithms: ['HS256'],
 		})) as { payload: Payload }
+		if (!payload.role) throw new Error('Отсутствует роль')
 		return payload.role
 	} catch (error) {
 		console.error('Ошибка верификации токена', error)
@@ -121,7 +122,6 @@ export async function updateAccessToken(
 	if (!refreshToken) {
 		return response
 	}
-
 	if (!cookies.get('accessToken')) {
 		const newAccessToken = await fetchAccessTokenFromAPI(refreshToken)
 		response.headers.set(
@@ -137,10 +137,10 @@ export async function fetchAccessTokenFromAPI(
 ): Promise<string> {
 	try {
 		const result = await fetch(
-			`http://localhost:8080/api/token-test?refreshToken=${refreshToken}`
+			`http://localhost:8080/api/token?refreshToken=${refreshToken}`
 		)
 		const data = await result.json()
-		return data?.accessToken
+		return data?.data?.accessToken
 	} catch (error) {
 		console.error('Ошибка при вызове API токена:', error)
 		throw error
