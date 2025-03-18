@@ -1,8 +1,8 @@
 import useCustomQuery from '@/lib/hooks/reactQuery/useCustomQuery'
 
-export function useTransport(id: string | undefined = undefined) {
+export function useTransports(id: string | undefined = undefined) {
 	return useCustomQuery({
-		queryKeyName: id ? 'transport' : 'transport',
+		queryKeyName: id ? 'transport' : 'transports',
 		queryKeyValue: id,
 	})
 }

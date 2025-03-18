@@ -1,6 +1,7 @@
 import { Driver as DriverType } from '@/lib/types'
 import Image from 'next/image'
 import { FcImageFile } from 'react-icons/fc'
+import DeleteButton from '@/components/UI/buttons/deleteButton/DeleteButton'
 import styles from './Driver.module.scss'
 
 export default function Driver({
@@ -36,7 +37,7 @@ export default function Driver({
 						{driver.isAvailable ? 'Деактивировать' : 'Активировать'}
 					</button>
 					<button onClick={onEdit}>Изменить</button>
-					<button>Удалить</button>
+					<DeleteButton entityType={'driver'} id={driver.id} />
 				</div>
 			)}
 		</div>

@@ -17,6 +17,7 @@ type CustomFormProps<T> = {
 	buttonErrorMessage?: string
 	buttonSuccessMessage?: string
 	formTitle?: string
+	removeStyles?: boolean
 	children: React.ReactNode
 }
 
@@ -30,6 +31,7 @@ export default function CustomForm<T>({
 	buttonErrorMessage = 'Ошибка',
 	buttonSuccessMessage = 'Успешно',
 	formTitle,
+	removeStyles = false,
 	children,
 }: CustomFormProps<T>) {
 	const methods = useForm<T>({
@@ -79,7 +81,7 @@ export default function CustomForm<T>({
 	return (
 		<FormProvider {...methods}>
 			<form
-				className={styles.form}
+				className={removeStyles ? styles.clear : styles.form}
 				onSubmit={handleSubmit(handleCustomSubmit)}
 				noValidate
 			>

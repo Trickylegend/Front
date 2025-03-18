@@ -8,7 +8,7 @@ import AddTransport from '../addTransport/AddTransport'
 import EditTransport from '../editTransport/EditTransport'
 import styles from './Transports.module.scss'
 
-const transport: TransportType[] = [
+const transports: TransportType[] = [
 	{
 		id: '1',
 		name: 'Камаз',
@@ -34,7 +34,7 @@ const transport: TransportType[] = [
 ]
 
 export default function Transports() {
-	// const { transport } = useTransport()
+	// const { transport } = useTransports()
 	const { categories } = useCategories()
 	const [activeTransport, setActiveTransport] = React.useState<TransportType>()
 
@@ -52,12 +52,12 @@ export default function Transports() {
 				)}
 			</div>
 			<div className={styles.flexContainer}>
-				{transport.map((transportItem: TransportType) => (
+				{transports.map((transport: TransportType) => (
 					<Transport
-						key={transportItem.id}
-						transport={transportItem}
+						key={transport.id}
+						transport={transport}
 						control={true}
-						onEdit={() => setActiveTransport(transportItem)}
+						onEdit={() => setActiveTransport(transport)}
 					/>
 				))}
 			</div>

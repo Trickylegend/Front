@@ -1,3 +1,4 @@
+import DeleteButton from '@/components/UI/buttons/deleteButton/DeleteButton'
 import { Article as ArticleType } from '@/lib/types'
 import Image from 'next/image'
 import { FcImageFile } from 'react-icons/fc'
@@ -36,7 +37,7 @@ export default function Article({
 						{article.isActive ? 'Деактивировать' : 'Активировать'}
 					</button>
 					<button onClick={onEdit}>Изменить</button>
-					<button>Удалить</button>
+					<DeleteButton entityType={'article'} id={article.id} />
 				</div>
 			)}
 		</div>

@@ -1,3 +1,4 @@
+import DeleteButton from '@/components/UI/buttons/deleteButton/DeleteButton'
 import { Transport as TransportType } from '@/lib/types'
 import Image from 'next/image'
 import { FaCarSide } from 'react-icons/fa'
@@ -52,7 +53,7 @@ export default function Transport({
 						</button>
 					)}
 					<button onClick={onEdit}>Изменить</button>
-					<button>Удалить</button>
+					<DeleteButton entityType={'transport'} id={transport.id} />
 				</div>
 			)}
 		</div>

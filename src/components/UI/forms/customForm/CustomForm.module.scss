@@ -30,3 +30,17 @@
 		background-color: #d6ffd2;
 	}
 }
+
+.clear {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	.errorButton {
+		background-color: #ffd3d3;
+	}
+
+	.successButton {
+		background-color: #d6ffd2;
+	}
+}

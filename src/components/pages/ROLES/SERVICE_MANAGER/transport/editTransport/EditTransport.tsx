@@ -4,7 +4,7 @@ import CustomFileInput from '@/components/UI/forms/customFileInput/CustomFileInp
 import CustomForm from '@/components/UI/forms/customForm/CustomForm'
 import CustomInput from '@/components/UI/forms/customInput/CustomInput'
 import CustomSelect from '@/components/UI/forms/customSelect/CustomSelect'
-import useEditTransport from '@/lib/hooks/reactQuery/transport/useEditTransport'
+import useEditTransport from '@/lib/hooks/reactQuery/transports/useEditTransport'
 import {
 	Category,
 	Transport,

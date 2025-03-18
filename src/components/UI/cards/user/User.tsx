@@ -1,3 +1,4 @@
+import DeleteButton from '@/components/UI/buttons/deleteButton/DeleteButton'
 import { User as UserType } from '@/lib/types'
 import Image from 'next/image'
 import { FaUser } from 'react-icons/fa'
@@ -33,7 +34,7 @@ export default function User({
 				<div className={styles.controlContainer}>
 					<button>{user.isActive ? 'Деактивировать' : 'Активировать'}</button>
 					<button onClick={onEdit}>Изменить</button>
-					<button>Удалить</button>
+					<DeleteButton entityType={'user'} id={user.id} />
 				</div>
 			)}
 		</div>
