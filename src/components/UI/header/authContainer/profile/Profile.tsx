@@ -1,12 +1,13 @@
 'use client'
 import useActiveUser from '@/lib/hooks/reactQuery/auth/useActiveUser'
-import { logout } from '@/lib/utils/authUtils'
+import useLogout from '@/lib/hooks/reactQuery/auth/useLogout'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import { VscAccount } from 'react-icons/vsc'
 import styles from './Profile.module.scss'
 
 export default function Profile() {
+	const mutation = useLogout()
 	const { activeUser, isLoading } = useActiveUser()
 	const router = useRouter()
 	const [isOpen, setIsOpen] = React.useState(false)
@@ -42,7 +43,14 @@ export default function Profile() {
 					>
 						Настройки
 					</button>
-					<button className={styles.logoutButton} onClick={() => logout()}>
+					<button
+						className={styles.logoutButton}
+						onClick={() => {
+							//TODO:навести порядок
+							mutation.mutate({})
+							router.refresh()
+						}}
+					>
 						Выйти
 					</button>
 				</div>
