@@ -1,0 +1,22 @@
+.container {
+	width: 200px;
+	height: 200px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	.map {
+		width: 100%;
+		height: 100%;
+	}
+}
+
+:global(.leaflet-control-attribution) {
+	display: none;
+}
+:global(.leaflet-shadow-pane) {
+	display: none;
+}
+:global(.leaflet-marker-icon) {
+	width: 30px !important;
+	height: 30px !important;
+}
