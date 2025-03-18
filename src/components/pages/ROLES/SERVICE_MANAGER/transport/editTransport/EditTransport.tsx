@@ -37,7 +37,7 @@ export default function EditTransport({
 		description: transport.description,
 		price: transport.price,
 		categoryId: transport.categoryId,
-		isAvailable: transport.isAvailable,
+		isActive: transport.isActive,
 		serviceStatus: transport.serviceStatus,
 		serviceStandard: transport.serviceStandard,
 		usageQuantity: transport.usageQuantity,
@@ -84,7 +84,7 @@ export default function EditTransport({
 					step={0.01}
 					placeholder='Текущий износ'
 				/>
-				<CustomCheckBox name='isAvailable' label={'Доступен к заказу'} />
+				<CustomCheckBox name='isActive' label={'Доступен к заказу'} />
 				<CustomFileInput name='preview' />
 			</CustomForm>
 		</div>

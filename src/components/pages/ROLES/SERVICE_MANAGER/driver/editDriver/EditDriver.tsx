@@ -22,7 +22,7 @@ export default function EditDriver({ driver }: { driver: Driver }) {
 		id: driver.id,
 		name: driver.name,
 		description: driver.description,
-		isAvailable: driver.isAvailable,
+		isActive: driver.isActive,
 	}
 
 	return (

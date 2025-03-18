@@ -8,7 +8,7 @@ export interface Transport {
 	description: string
 	price: number
 	categoryId: string
-	isAvailable: boolean
+	isActive: boolean
 	serviceStatus: ServiceStatus
 	serviceStandard?: number
 	usageQuantity?: number
@@ -20,7 +20,7 @@ export interface TransportCreate {
 	description: string
 	price: number
 	categoryId: string
-	isAvailable?: boolean
+	isActive?: boolean
 	serviceStandard?: number
 	usageQuantity?: number
 	preview?: File[]
@@ -32,7 +32,7 @@ export interface TransportEdit {
 	description: string
 	price: number
 	categoryId: string
-	isAvailable: boolean
+	isActive: boolean
 	serviceStatus: ServiceStatus
 	serviceStandard?: number
 	usageQuantity?: number
@@ -44,7 +44,7 @@ export const transportCreateSchema = z.object({
 	description: z.string().optional().default(''),
 	price: z.coerce.number().min(0, 'Введите цену'),
 	categoryId: z.string().min(1, 'Выберите категорию'),
-	isAvailable: z.boolean().default(false),
+	isActive: z.boolean().default(false),
 	serviceStandard: z.coerce
 		.number()
 		.min(0, 'Минимальное значение 0')
@@ -66,7 +66,7 @@ export const transportEditSchema = z.object({
 	description: z.string().optional().default(''),
 	price: z.coerce.number().min(0, 'Введите цену'),
 	categoryId: z.string().min(1, 'Выберите категорию'),
-	isAvailable: z.boolean().default(false),
+	isActive: z.boolean().default(false),
 	serviceStandard: z.coerce
 		.number()
 		.min(0, 'Минимальное значение 0')

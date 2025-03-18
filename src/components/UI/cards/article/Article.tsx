@@ -1,4 +1,5 @@
 import DeleteButton from '@/components/UI/buttons/deleteButton/DeleteButton'
+import StatusButton from '@/components/UI/buttons/statusButton/StatusButton'
 import { Article as ArticleType } from '@/lib/types'
 import Image from 'next/image'
 import { FcImageFile } from 'react-icons/fc'
@@ -33,9 +34,13 @@ export default function Article({
 			</div>
 			{control && (
 				<div className={styles.controlContainer}>
-					<button>
-						{article.isActive ? 'Деактивировать' : 'Активировать'}
-					</button>
+					<StatusButton
+						entityType={'user'}
+						id={article.id}
+						status={article.isActive}
+						deactivateText={'Активировать'}
+						activateText={'Деактивировать'}
+					/>
 					<button onClick={onEdit}>Изменить</button>
 					<DeleteButton entityType={'article'} id={article.id} />
 				</div>

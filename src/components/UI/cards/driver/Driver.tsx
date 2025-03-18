@@ -1,7 +1,8 @@
+import DeleteButton from '@/components/UI/buttons/deleteButton/DeleteButton'
+import StatusButton from '@/components/UI/buttons/statusButton/StatusButton'
 import { Driver as DriverType } from '@/lib/types'
 import Image from 'next/image'
 import { FcImageFile } from 'react-icons/fc'
-import DeleteButton from '@/components/UI/buttons/deleteButton/DeleteButton'
 import styles from './Driver.module.scss'
 
 export default function Driver({
@@ -33,9 +34,13 @@ export default function Driver({
 			</div>
 			{control && (
 				<div className={styles.controlContainer}>
-					<button>
-						{driver.isAvailable ? 'Деактивировать' : 'Активировать'}
-					</button>
+					<StatusButton
+						entityType={'user'}
+						id={driver.id}
+						status={driver.isActive}
+						deactivateText={'Деактивировать'}
+						activateText={'Активировать'}
+					/>
 					<button onClick={onEdit}>Изменить</button>
 					<DeleteButton entityType={'driver'} id={driver.id} />
 				</div>

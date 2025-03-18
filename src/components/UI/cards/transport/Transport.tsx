@@ -1,4 +1,5 @@
 import DeleteButton from '@/components/UI/buttons/deleteButton/DeleteButton'
+import StatusButton from '@/components/UI/buttons/statusButton/StatusButton'
 import { Transport as TransportType } from '@/lib/types'
 import Image from 'next/image'
 import { FaCarSide } from 'react-icons/fa'
@@ -31,8 +32,8 @@ export default function Transport({
 				<h3 className={styles.name}>{transport.name}</h3>
 				<p className={styles.description}>{transport.description}</p>
 				<p className={styles.price}>{transport.price} руб.</p>
-				<p className={styles.isAvailable}>
-					{transport.isAvailable ? 'Доступен' : 'Недоступен'}
+				<p className={styles.isActive}>
+					{transport.isActive ? 'Доступен' : 'Недоступен'}
 				</p>{' '}
 				<p className={styles.serviceStatus}>{transport.serviceStatus}</p>
 				<p className={styles.serviceStandard}>{transport.serviceStandard}</p>
@@ -40,9 +41,13 @@ export default function Transport({
 			</div>
 			{control && (
 				<div className={styles.controlContainer}>
-					<button>
-						{transport.isAvailable ? 'Деактивировать' : 'Активировать'}
-					</button>
+					<StatusButton
+						entityType={'transport'}
+						id={transport.id}
+						status={transport.isActive}
+						deactivateText={'Заблокировать'}
+						activateText={'Разблокировать'}
+					/>
 					{(transport.serviceStatus === 'inService' ||
 						transport.serviceStatus === 'required') && (
 						<button>

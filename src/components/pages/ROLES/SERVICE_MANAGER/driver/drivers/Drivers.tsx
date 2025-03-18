@@ -12,13 +12,13 @@ const drivers: DriverType[] = [
 		id: '1',
 		name: 'Евгений',
 		description: 'Очень опытный водитель',
-		isAvailable: false,
+		isActive: false,
 	},
 	{
 		id: '2',
 		name: 'Петр',
 		description: 'Водитель со стажем',
-		isAvailable: false,
+		isActive: false,
 	},
 ]
 

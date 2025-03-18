@@ -65,7 +65,7 @@ export default function AddTransport({
 					step={0.01}
 					placeholder='Текущий износ'
 				/>
-				<CustomCheckBox name='isAvailable' label={'Доступен к заказу'} />
+				<CustomCheckBox name='isActive' label={'Доступен к заказу'} />
 				<CustomFileInput name='preview' />
 			</CustomForm>
 		</div>
