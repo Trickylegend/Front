@@ -10,7 +10,6 @@ export default function Profile() {
 	const { activeUser, isLoading } = useActiveUser()
 	const router = useRouter()
 	const [isOpen, setIsOpen] = React.useState(false)
-
 	if (isLoading) {
 		return (
 			<div className={styles.container}>
@@ -30,7 +29,7 @@ export default function Profile() {
 					<VscAccount />
 				</div>
 				<div className={styles.nameContainer}>
-					<h4>{activeUser.name}</h4>
+					<h4>{activeUser?.name}</h4>
 				</div>
 			</div>
 			{isOpen && (

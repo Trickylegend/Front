@@ -44,7 +44,7 @@ export default function useCustomQuery({
 		queryKey: queryKeyValue ? [queryKeyName, queryKeyValue] : [queryKeyName],
 		queryFn: async () => {
 			const data = await getData({ queryKeyName, queryKeyValue })
-			return data[queryKeyName]
+			return data.data[queryKeyName]
 		},
 		staleTime,
 		gcTime,
