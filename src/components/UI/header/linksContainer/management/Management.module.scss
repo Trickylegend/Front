@@ -1,0 +1,26 @@
+.container {
+	position: relative;
+	&.open {
+		background-color: #ffffff;
+	}
+	.shortInfoContainer {
+		cursor: pointer;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.fullInfoContainer {
+		height: max-content;
+		width: 100%;
+		z-index: 2;
+		position: absolute;
+		top: 100%;
+		left: 50%;
+		transform: translateX(-50%);
+		padding-top: 15px;
+		display: flex;
+		flex-direction: column;
+		gap: 5px;
+		background-color: #fff;
+	}
+}

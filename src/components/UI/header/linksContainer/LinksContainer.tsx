@@ -2,6 +2,7 @@ import { UserFromCookies } from '@/lib/types'
 import getUserFromCookies from '@/lib/utils/authUtils'
 import Link from 'next/link'
 import styles from './LinksContainer.module.scss'
+import Management from './management/Management'
 
 export default async function LinksContainer() {
 	const user: UserFromCookies = await getUserFromCookies()
@@ -15,9 +16,7 @@ export default async function LinksContainer() {
 			>
 				Избранное
 			</Link>
-			{user.role === 'SERVICE_MANAGER' && (
-				<Link href={'/categories'}>Управление категориями</Link>
-			)}
+			<Management role={user.role} />
 		</div>
 	)
 }
