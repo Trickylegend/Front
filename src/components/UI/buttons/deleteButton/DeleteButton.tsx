@@ -1,10 +1,11 @@
 'use client'
 
-import useDelete from '@/lib/hooks/reactQuery/useDelete'
+import CustomForm from '@/components/UI/forms/customForm/CustomForm'
+import CustomInput from '@/components/UI/forms/customInput/CustomInput'
+
+import useDelete from '@/lib/hooks/reactQuery/management/useDelete'
 import { deleteSchema, DeleteType, EntityType } from '@/lib/types'
 import { createOnSubmit } from '@/lib/utils/createOnSubmit'
-import CustomForm from '../../forms/customForm/CustomForm'
-import CustomInput from '../../forms/customInput/CustomInput'
 import styles from './DeleteButton.module.scss'
 
 const errorMessage = 'Ошибка удаления'

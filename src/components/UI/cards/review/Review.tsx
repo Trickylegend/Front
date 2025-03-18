@@ -1,5 +1,4 @@
-import Ban from '@/components/pages/ROLES/ADMIN/review/ban/Ban'
-import Hide from '@/components/pages/ROLES/ADMIN/review/hide/Hide'
+import StatusButton from '@/components/UI/buttons/statusButton/StatusButton'
 import { Review as ReviewType } from '@/lib/types'
 import Image from 'next/image'
 import { FaUser } from 'react-icons/fa'
@@ -34,8 +33,20 @@ export default function Review({
 			</div>
 			{control && (
 				<div className={styles.controlContainer}>
-					<Hide review={review} />
-					<Ban user={review.author} />
+					<StatusButton
+						entityType={'review'}
+						id={review.id}
+						status={review.isActive}
+						deactivateText={'Скрыть'}
+						activateText={'Показать'}
+					/>
+					<StatusButton
+						entityType={'user'}
+						id={review.author.id}
+						status={review.author.isActive}
+						deactivateText={'Заблокировать'}
+						activateText={'Разблокировать'}
+					/>
 				</div>
 			)}
 		</div>

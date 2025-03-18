@@ -12,8 +12,18 @@ export interface DeleteType {
 	id: string
 }
 
+export interface StatusType {
+	id: string
+	isActive: boolean
+}
+
 export const deleteSchema = z.object({
 	id: z.string().min(1),
+})
+
+export const statusSchema = z.object({
+	id: z.string().optional(),
+	isActive: z.boolean(),
 })
 
 export const entityMap = {
