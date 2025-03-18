@@ -35,7 +35,7 @@ export default function Article({
 			{control && (
 				<div className={styles.controlContainer}>
 					<StatusButton
-						entityType={'user'}
+						entityType={'article'}
 						id={article.id}
 						status={article.isActive}
 						deactivateText={'Активировать'}

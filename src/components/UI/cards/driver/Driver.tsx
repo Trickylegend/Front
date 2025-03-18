@@ -35,7 +35,7 @@ export default function Driver({
 			{control && (
 				<div className={styles.controlContainer}>
 					<StatusButton
-						entityType={'user'}
+						entityType={'driver'}
 						id={driver.id}
 						status={driver.isActive}
 						deactivateText={'Деактивировать'}
