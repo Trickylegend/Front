@@ -1,8 +1,8 @@
 import DeleteButton from '@/components/UI/buttons/deleteButton/DeleteButton'
 import StatusButton from '@/components/UI/buttons/statusButton/StatusButton'
 import { User as UserType } from '@/lib/types'
-import Image from 'next/image'
 import { FaUser } from 'react-icons/fa'
+import CustomImage from '../../image/CustomImage'
 import styles from './User.module.scss'
 
 export default function User({
@@ -17,8 +17,13 @@ export default function User({
 	return (
 		<div className={styles.container}>
 			<div className={styles.imageContainer}>
-				{user.avatar ? (
-					<Image src={user.avatar} width={100} height={100} alt={user.name} />
+				{user.avatar?.id ? (
+					<CustomImage
+						id={user.avatar.id}
+						width={100}
+						height={100}
+						alt={user.name}
+					/>
 				) : (
 					<FaUser />
 				)}

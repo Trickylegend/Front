@@ -21,7 +21,7 @@ export default function Management({ role }: { role: Role }) {
 					{role === 'ADMIN' && (
 						<>
 							<Link href={'/admin/reviews'}>Управление отзывами</Link>
-							<Link href={'/admin/users'}>Управление отзывами</Link>
+							<Link href={'/admin/users'}>Управление пользователями</Link>
 						</>
 					)}
 					{role === 'EDITOR' && (

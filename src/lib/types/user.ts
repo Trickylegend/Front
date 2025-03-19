@@ -2,6 +2,8 @@ import { z } from 'zod'
 
 export type Role = 'USER' | 'ADMIN' | 'MANAGER' | 'SERVICE_MANAGER' | 'EDITOR'
 
+export type Avatar = { id: string}
+
 export interface User {
 	id: string
 	name: string
@@ -9,7 +11,7 @@ export interface User {
 	password?: string
 	isActive: boolean
 	role: Role
-	avatar?: string
+	avatar?: Avatar
 }
 
 export interface UserCreate {

@@ -47,6 +47,7 @@ export const routeAccessConfig: Record<RouteType, Role[]> = {
 }
 
 export const urlRouteTypeMap: Record<string, RouteType> = {
+	'/profile': ROUTE_TYPES.PROTECTED,
 	'/favorites': ROUTE_TYPES.PROTECTED,
 	'/service-manager': ROUTE_TYPES.SERVICE_MANAGER,
 }

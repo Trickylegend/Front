@@ -1,4 +1,5 @@
 'use client'
+import CustomImage from '@/components/UI/image/CustomImage'
 import useActiveUser from '@/lib/hooks/reactQuery/auth/useActiveUser'
 import useLogout from '@/lib/hooks/reactQuery/auth/useLogout'
 import { useRouter } from 'next/navigation'
@@ -27,7 +28,11 @@ export default function Profile() {
 				}}
 			>
 				<div className={styles.imageContainer}>
-					<VscAccount />
+					{activeUser.avatar ? (
+						<CustomImage id={activeUser.avatar} />
+					) : (
+						<VscAccount />
+					)}
 				</div>
 				<div className={styles.nameContainer}>
 					<h4>{activeUser?.name}</h4>
